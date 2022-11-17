@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import Favoris from "./pages/Favoris";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 function App() {
   const [favoris, setFavoris] = useState([]);

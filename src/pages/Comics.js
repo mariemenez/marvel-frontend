@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ComicCard from "../components/ComicCard";
+import { Link } from "react-router-dom";
 
-const Comics = () => {
+const Comics = ({ favoris, setFavoris }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState("");
@@ -27,40 +28,102 @@ const Comics = () => {
     <div>en cours de chargement page comics</div>
   ) : (
     <div>
-      <h1>la liste des comics</h1>
-      <input
-        type="text"
-        placeholder="recherchez votre personnage"
-        value={filters}
-        onChange={(event) => {
-          setFilters(event.target.value);
-        }}
-      />
-      {data.results.map((comic, index) => {
-        const picture = comic.thumbnail.path + "." + comic.thumbnail.extension;
-        // console.log(picture);
+      <div className="header-home">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/2560px-Marvel_Logo.svg.png"
+          alt="logo-marvel"
+        />
+        <input
+          type="text"
+          placeholder="recherchez votre BD"
+          value={filters}
+          onChange={(event) => {
+            setFilters(event.target.value);
+          }}
+        />
+        <nav>
+          <div className="favoris">
+            <i className="fa-solid fa-people-group"></i>{" "}
+            <Link className="lien" to={"/characters"}>
+              <p>Personnages</p>
+            </Link>
+          </div>
+          <div className="favoris">
+            <i className="fa-solid fa-bolt-lightning"></i>
+            <Link className="lien" to={"/favoris"}>
+              <p>Votre liste</p>
+            </Link>
+          </div>
+          <div className="favoris">
+            <i className="fa-solid fa-house"></i>{" "}
+            <Link className="lien" to={"/"}>
+              <p>Home</p>
+            </Link>
+          </div>
+        </nav>
+      </div>
+      <div className="container">
+        <div className="comics-container container">
+          {data.results.map((comic, index) => {
+            const picture =
+              comic.thumbnail.path + "." + comic.thumbnail.extension;
+            // console.log(picture);
 
-        return (
-          <section key={index} className="comics-container">
-            <ComicCard comic={comic} picture={picture} />
-          </section>
-        );
-      })}
-      <button
-        onClick={() => {
-          setPage(page + 1);
-        }}
-      >
-        page suivante
-      </button>
-      <p>{page}</p>
-      <button
-        onClick={() => {
-          setPage(page - 1);
-        }}
-      >
-        page précédente
-      </button>
+            return (
+              <section key={index}>
+                <div className="comic-big-card">
+                  <div>
+                    <ComicCard comic={comic} picture={picture} />
+                  </div>
+                  <div className="comic-info">
+                    <h2>{comic.title}</h2>
+                    <div
+                      className="addFavoris"
+                      onClick={() => {
+                        const newFavoris = [...favoris];
+                        const obj = {
+                          name: comic.title,
+                        };
+                        newFavoris.push(obj);
+                        setFavoris(newFavoris);
+                        localStorage.setItem(
+                          "newFavoris",
+                          JSON.stringify(newFavoris)
+                        );
+
+                        const storage = JSON.parse(
+                          localStorage.getItem("newFavoris")
+                        );
+                        console.log(storage);
+                      }}
+                    >
+                      <i className="fa-solid fa-bolt-lightning"></i>
+                    </div>
+                  </div>
+                  <p>{comic.description}</p>
+                </div>
+              </section>
+            );
+          })}
+        </div>
+        <div className="pagination">
+          <div
+            onClick={() => {
+              setPage(page - 1);
+            }}
+          >
+            <i className="fa-solid fa-arrow-left"></i>
+          </div>
+          <p>{page}</p>
+          <div
+            onClick={() => {
+              setPage(page + 1);
+            }}
+          >
+            <i className="fa-solid fa-arrow-right"></i>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

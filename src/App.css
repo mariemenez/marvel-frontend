@@ -1,42 +1,43 @@
-/*PERSONNAGE */
-
-.container {
-  max-width: 1200px;
-  background-color: aliceblue;
-  margin: 0 auto;
-}
-
-.test {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.perso-container {
-  background-color: lavender;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 50px;
-}
-
-.perso-card {
-  border: solid black 1px;
-  height: 250px;
-  width: 250px;
-}
-
-.perso-card img {
-  height: 80%;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
 /* HOME */
 
 .header-home {
   height: 100px;
-  background-color: red;
+  background-color: #ee161e;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Roboto", sans-serif;
+  align-items: center;
+}
+
+.header-home img {
+  height: 100px;
+}
+
+.header-home nav {
+  display: flex;
+  /* gap: 5px; */
+}
+
+.header-home input {
+  width: 40%;
+  padding: 15px;
+  border-radius: 30px;
+  border: 0px;
+}
+
+.favoris {
+  display: flex;
+  color: white;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 20px;
+  padding-right: 30px;
+}
+
+.header-home .lien {
+  text-decoration: none;
+  color: white;
 }
 
 .content-home {
@@ -44,7 +45,7 @@
   justify-content: space-evenly;
   align-items: center;
   height: 75vh;
-  background-color: antiquewhite;
+  background-color: black;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 30px;
 }
@@ -58,6 +59,215 @@
   align-items: center;
 }
 
+/* PERSONNAGES */
+
+.background {
+  background-color: black;
+}
+.container {
+  max-width: 1200px;
+  background-color: black;
+  margin: 0 auto;
+}
+
+.perso-container {
+  background-color: black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.perso-big-card {
+  background-color: black;
+  /* border: solid 2px blue; */
+  width: 260px;
+  height: 300px;
+}
+
+.perso-big-card :hover {
+  opacity: 90%;
+}
+
+.perso-card {
+  border: solid black 1px;
+  height: 250px;
+  width: 260px;
+}
+.perso-container .lien {
+  text-decoration: none;
+}
+
+.perso-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: saddlebrown; */
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+}
+.perso-info h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  font-size: 18px;
+}
+
+.addFavoris {
+  /* background-color: #ee161e; */
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.perso-card img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  position: relative;
+}
+
+/* COMICS */
+
+.container {
+  max-width: 1200px;
+  background-color: black;
+  margin: 0 auto;
+}
+
+.comics-container {
+  background-color: lavender;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.comic-big-card {
+  background-color: lightblue;
+  border: solid 2px blue;
+  width: 260px;
+  height: 450px;
+  overflow: hidden;
+}
+
+.comic-card {
+  border: solid black 1px;
+  height: 350px;
+  width: 260px;
+}
+.comics-container .lien {
+  text-decoration: none;
+}
+
+.comic-info {
+  display: flex;
+  justify-content: space-between;
+  /* background-color: saddlebrown; */
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+}
+.comic-info h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  font-size: 18px;
+}
+
+.comic-big-card p {
+  font-family: "Roboto", sans-serif;
+  line-height: 15px;
+  padding-top: 10px;
+  color: white;
+}
+
+.comic-big-card :hover {
+  opacity: 90%;
+}
+.addFavoris {
+  /* background-color: #ee161e; */
+  color: white;
+  font-size: 22px;
+}
+
+.comic-card img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  position: relative;
+}
+
+/* PAGINATION */
+
+.pagination {
+  background-color: lightpink;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  gap: 50px;
+  margin-top: 40px;
+}
+.pagination div {
+  cursor: pointer;
+}
+
+/* COMICS BY CHARACTERID */
+
+.container2 {
+  background-color: antiquewhite;
+}
+.comicsbyid-content {
+  background-color: lavender;
+  border: solid black 1px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.characterPic {
+  background-color: lightpink;
+  width: 30%;
+}
+.characterPic img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.carousel {
+  background-color: aquamarine;
+  display: flex;
+  width: 70%;
+  overflow-x: scroll;
+  gap: 20px;
+}
+
+.carousel h2 {
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.carousel p {
+  font-family: "Roboto", sans-serif;
+}
+.carousel img {
+  height: 500px;
+}
 /* FOOTER */
 
 .footer {
