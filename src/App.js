@@ -4,13 +4,13 @@ import Personnages from "./pages/Personnages";
 import Comics from "./pages/Comics";
 import ComicsByPerso from "./pages/ComicsByPerso";
 import Home from "./pages/Home";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import Favoris from "./pages/Favoris";
 import { useState } from "react";
-import Cookies from "js-cookie";
 
 function App() {
-  const [favoris, setFavoris] = useState([]);
+  const [CharactersFavoris, setCharactersFavoris] = useState([]);
+  const [ComicsFavoris, setComicsFavoris] = useState([]);
 
   return (
     <Router>
@@ -18,16 +18,25 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="/characters"
-          element={<Personnages favoris={favoris} setFavoris={setFavoris} />}
+          element={
+            <Personnages
+              CharactersFavoris={CharactersFavoris}
+              setCharactersFavoris={setCharactersFavoris}
+            />
+          }
         />
-        <Route path="/comics" element={<Comics />} />
-        <Route path="/comics/:characterId" element={<ComicsByPerso />} />
         <Route
-          path="/favoris"
-          element={<Favoris favoris={favoris} setFavoris={setFavoris} />}
+          path="/comics"
+          element={
+            <Comics
+              ComicsFavoris={ComicsFavoris}
+              setComicsFavoris={setComicsFavoris}
+            />
+          }
         />
+        <Route path="/comics/:characterId" element={<ComicsByPerso />} />
+        <Route path="/favoris" element={<Favoris />} />
       </Routes>
-      <Footer />
     </Router>
   );
 }

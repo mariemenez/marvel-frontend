@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import PersoCard from "../components/PersoCard";
 import { Link } from "react-router-dom";
 // import Cookies from "js-cookie";
+import Loading from "../components/Loading";
 
-const Personnages = ({ favoris, setFavoris }) => {
+const Personnages = ({ CharactersFavoris, setCharactersFavoris }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState("");
@@ -26,38 +27,45 @@ const Personnages = ({ favoris, setFavoris }) => {
     console.log("useEffect executed");
   }, [filters, page]);
 
+  // console.log(data.results);
   return isLoading ? (
-    <div>en cours de chargement</div>
+    <Loading />
   ) : (
     <div className="background">
       <div className="header-home">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/2560px-Marvel_Logo.svg.png"
-          alt="logo-marvel"
-        />
-        <input
-          type="text"
-          placeholder="recherchez votre personnage"
-          value={filters}
-          onChange={(event) => {
-            setFilters(event.target.value);
-          }}
-        />
+        <div className="picture-input">
+          <Link className="lien" to={"/"}>
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/2560px-Marvel_Logo.svg.png"
+              alt="logo-marvel"
+            />
+          </Link>
+
+          <input
+            type="text"
+            placeholder="recherchez votre personnage"
+            value={filters}
+            onChange={(event) => {
+              setFilters(event.target.value);
+            }}
+          />
+        </div>
+
         <nav>
           <div className="favoris">
-            <i class="fa-solid fa-book-open"></i>{" "}
+            <i className="fa-solid fa-book-open"></i>{" "}
             <Link className="lien" to={"/comics"}>
               <p>comics</p>
             </Link>
           </div>
           <div className="favoris">
-            <i class="fa-solid fa-bolt-lightning"></i>
+            <i className="fa-solid fa-bolt-lightning"></i>
             <Link className="lien" to={"/favoris"}>
               <p>Votre liste</p>
             </Link>
           </div>
           <div className="favoris">
-            <i class="fa-solid fa-house"></i>{" "}
+            <i className="fa-solid fa-house"></i>{" "}
             <Link className="lien" to={"/"}>
               <p>Home</p>
             </Link>
@@ -65,8 +73,7 @@ const Personnages = ({ favoris, setFavoris }) => {
         </nav>
       </div>
       <div className="container">
-        <h1>la liste des personnages</h1>
-        <div className="perso-container container">
+        <div className="perso-container">
           {data.results.map((perso, index) => {
             const picture =
               perso.thumbnail.path + "." + perso.thumbnail.extension;
@@ -85,27 +92,27 @@ const Personnages = ({ favoris, setFavoris }) => {
                     <div
                       className="addFavoris"
                       onClick={() => {
-                        const newFavoris = [...favoris];
+                        const newCharactersFavoris = [...CharactersFavoris];
                         const obj = {
                           name: perso.name,
                           picture: picture,
                           description: perso.description,
                         };
-                        newFavoris.push(obj);
-                        setFavoris(newFavoris);
+                        newCharactersFavoris.push(obj);
+                        setCharactersFavoris(newCharactersFavoris);
                         // console.log(newFavoris);
                         localStorage.setItem(
-                          "newFavoris",
-                          JSON.stringify(newFavoris)
+                          "newCharactersFavoris",
+                          JSON.stringify(newCharactersFavoris)
                         );
 
-                        const storage = JSON.parse(
-                          localStorage.getItem("newFavoris")
+                        const CharactersStorage = JSON.parse(
+                          localStorage.getItem("newCharactersFavoris")
                         );
-                        console.log(storage);
+                        console.log(CharactersStorage);
                       }}
                     >
-                      <i class="fa-solid fa-bolt-lightning"></i>
+                      <i className="fa-solid fa-bolt-lightning"></i>
                     </div>
                   </div>
                 </div>
@@ -113,21 +120,23 @@ const Personnages = ({ favoris, setFavoris }) => {
             );
           })}
         </div>
-        <button
-          onClick={() => {
-            setPage(page + 1);
-          }}
-        >
-          page suivante
-        </button>
-        <p>{page}</p>
-        <button
-          onClick={() => {
-            setPage(page - 1);
-          }}
-        >
-          page précédente
-        </button>
+        <div className="pagination">
+          <div
+            onClick={() => {
+              setPage(page - 1);
+            }}
+          >
+            <i className="fa-solid fa-arrow-left"></i>
+          </div>
+          <p>{page}</p>
+          <div
+            onClick={() => {
+              setPage(page + 1);
+            }}
+          >
+            <i className="fa-solid fa-arrow-right"></i>
+          </div>
+        </div>
       </div>
     </div>
   );

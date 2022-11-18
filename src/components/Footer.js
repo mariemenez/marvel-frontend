@@ -1,9 +1,9 @@
-const Footer = () => {
-  return (
-    <div className="footer">
-      <p>je suis le footer</p>
-    </div>
-  );
-};
+// const Footer = () => {
+//   return (
+//     <footer>
+//       <p>je suis le footer</p>
+//     </footer>
+//   );
+// };
 
-export default Footer;
+// export default Footer;

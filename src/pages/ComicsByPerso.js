@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const ComicsByPerso = () => {
   const [data, setData] = useState();
@@ -23,51 +24,50 @@ const ComicsByPerso = () => {
     };
     fetchData();
   }, [characterId]);
-  const characterPic = data.thumbnail.path + "." + data.thumbnail.extension;
 
   return isLoading ? (
-    <p>en cours de chargement</p>
+    <Loading />
   ) : (
-    <div>
-      <div className="header-home">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/2560px-Marvel_Logo.svg.png"
-          alt="logo-marvel"
-        />
+    <div className="background">
+      <div className="header-comicsByPerso">
+        <Link className="lien" to={"/"}>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/2560px-Marvel_Logo.svg.png"
+            alt="logo-marvel"
+          />
+        </Link>
+
         <nav>
           <div className="favoris">
-            <i class="fa-solid fa-people-group"></i>{" "}
-            <Link className="lien" to={"/characters"}>
-              <p>Personnages</p>
-            </Link>
-          </div>
-          <div className="favoris">
-            <i class="fa-solid fa-bolt-lightning"></i>
+            <i className="fa-solid fa-bolt-lightning"></i>
             <Link className="lien" to={"/favoris"}>
               <p>Votre liste</p>
             </Link>
           </div>
           <div className="favoris">
-            <i class="fa-solid fa-house"></i>{" "}
+            <i className="fa-solid fa-house"></i>{" "}
             <Link className="lien" to={"/"}>
               <p>Home</p>
             </Link>
           </div>
         </nav>
       </div>
-      <div className="container2 container">
+      <div className="container">
         <div className="comicsbyid-content">
           <div className="characterPic">
-            <img src={characterPic} alt="" />
+            <img
+              src={data.thumbnail.path + "." + data.thumbnail.extension}
+              alt="characterPic"
+            />
           </div>
           <div className="carousel">
             {data.comics.map((elem, index) => {
-              const picture =
+              const comicPicture =
                 elem.thumbnail.path + "." + elem.thumbnail.extension;
 
               return (
                 <section key={index} className="comicById-container">
-                  <img src={picture} alt="" />
+                  <img src={comicPicture} alt="" />
                   <h2>{elem.title}</h2>
                   <p>{elem.description}</p>
                 </section>

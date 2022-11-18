@@ -2,8 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ComicCard from "../components/ComicCard";
 import { Link } from "react-router-dom";
+import Loading from "../components/Loading";
 
-const Comics = ({ favoris, setFavoris }) => {
+const Comics = ({ ComicsFavoris, setComicsFavoris }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState("");
@@ -25,22 +26,28 @@ const Comics = ({ favoris, setFavoris }) => {
     console.log("useEffect executed");
   }, [filters, page]);
   return isLoading ? (
-    <div>en cours de chargement page comics</div>
+    <Loading />
   ) : (
-    <div>
+    <div className="background">
       <div className="header-home">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/2560px-Marvel_Logo.svg.png"
-          alt="logo-marvel"
-        />
-        <input
-          type="text"
-          placeholder="recherchez votre BD"
-          value={filters}
-          onChange={(event) => {
-            setFilters(event.target.value);
-          }}
-        />
+        <div className="picture-input">
+          <Link className="lien" to={"/"}>
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/2560px-Marvel_Logo.svg.png"
+              alt="logo-marvel"
+            />
+          </Link>
+
+          <input
+            type="text"
+            placeholder="recherchez votre BD"
+            value={filters}
+            onChange={(event) => {
+              setFilters(event.target.value);
+            }}
+          />
+        </div>
+
         <nav>
           <div className="favoris">
             <i className="fa-solid fa-people-group"></i>{" "}
@@ -63,7 +70,7 @@ const Comics = ({ favoris, setFavoris }) => {
         </nav>
       </div>
       <div className="container">
-        <div className="comics-container container">
+        <div className="comics-container">
           {data.results.map((comic, index) => {
             const picture =
               comic.thumbnail.path + "." + comic.thumbnail.extension;
@@ -80,21 +87,23 @@ const Comics = ({ favoris, setFavoris }) => {
                     <div
                       className="addFavoris"
                       onClick={() => {
-                        const newFavoris = [...favoris];
+                        const NewComicsFavoris = [...ComicsFavoris];
                         const obj = {
-                          name: comic.title,
+                          title: comic.title,
+                          picture: picture,
+                          description: comic.description,
                         };
-                        newFavoris.push(obj);
-                        setFavoris(newFavoris);
+                        NewComicsFavoris.push(obj);
+                        setComicsFavoris(NewComicsFavoris);
                         localStorage.setItem(
-                          "newFavoris",
-                          JSON.stringify(newFavoris)
+                          "NewComicsFavoris",
+                          JSON.stringify(NewComicsFavoris)
                         );
 
-                        const storage = JSON.parse(
-                          localStorage.getItem("newFavoris")
+                        const ComicsStorage = JSON.parse(
+                          localStorage.getItem("NewComicsFavoris")
                         );
-                        console.log(storage);
+                        console.log(ComicsStorage);
                       }}
                     >
                       <i className="fa-solid fa-bolt-lightning"></i>

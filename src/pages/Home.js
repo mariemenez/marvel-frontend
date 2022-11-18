@@ -3,35 +3,45 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div>
-      <div className="header-home">
+      <div className="header-comicsByPerso">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/2560px-Marvel_Logo.svg.png"
           alt="logo-marvel"
         />
-        <div className="favoris">
-          <i class="fa-solid fa-bolt-lightning"></i>
-          <Link className="" to={"/favoris"}>
-            <p>Votre liste</p>
-          </Link>
-        </div>
+        <nav>
+          <div className="favoris">
+            <i className="fa-solid fa-bolt-lightning"></i>
+            <Link className="lien" to={"/favoris"}>
+              <p>Votre liste</p>
+            </Link>
+          </div>
+          <div className="favoris">
+            <i className="fa-solid fa-house"></i>{" "}
+            <Link className="lien" to={"/"}>
+              <p>Home</p>
+            </Link>
+          </div>
+        </nav>
       </div>
-      <section className="content-home">
-        <Link to={"/comics"}>
-          <div className="left-home">
-            <p>Découvrez les comics</p>
-          </div>
-        </Link>
-        <Link to={"/characters"}>
-          <div className="right-home">
-            <p>Découvrez les personnages</p>
-          </div>
-        </Link>
-        <Link to={"/favoris"}>
-          <div className="favorie">
-            <p>consulter vos favoris</p>
-          </div>
-        </Link>
-      </section>
+      <div className="imagefond">
+        <section className="content-home">
+          <Link to={"/comics"} className="lien">
+            <div className="left-home">
+              <h1>
+                LES <br /> COMICS
+              </h1>
+            </div>
+          </Link>
+          <Link to={"/characters"} className="lien">
+            <div className="right-home">
+              <h1>
+                LES <br /> PERSO-
+                <br /> NNAGES
+              </h1>
+            </div>
+          </Link>
+        </section>
+      </div>
     </div>
   );
 };
