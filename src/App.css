@@ -414,3 +414,48 @@ body {
 .loading i {
   color: #ffc91c;
 }
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+  .content-home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    /* background-color: black; */
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .favoris {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .perso-container {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .content-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 150vh;
+    /* background-color: black; */
+  }
+  .imagefond {
+    background-image: url("https://images.alphacoders.com/948/948697.jpg");
+    background-size: cover;
+  }
+  .perso-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 40px;
+  }
+}
