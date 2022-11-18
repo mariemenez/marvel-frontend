@@ -15,7 +15,7 @@ const Personnages = ({ CharactersFavoris, setCharactersFavoris }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/characters?name=${filters}&page=${page}`
+          `https://site--marvel-backend--6gc2xpkgkrgz.code.run/characters?name=${filters}&page=${page}`
         );
         setData(response.data);
         setIsLoading(false);

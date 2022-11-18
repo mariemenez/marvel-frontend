@@ -14,7 +14,7 @@ const Comics = ({ ComicsFavoris, setComicsFavoris }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/comics?title=${filters}&page=${page}`
+          `https://site--marvel-backend--6gc2xpkgkrgz.code.run/comics?title=${filters}&page=${page}`
         );
         setData(response.data);
         setIsLoading(false);
