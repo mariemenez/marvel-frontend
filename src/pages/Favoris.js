@@ -3,10 +3,10 @@ const Favoris = ({ picture }) => {
   const CharactersStorage = JSON.parse(
     localStorage.getItem("newCharactersFavoris")
   );
-  console.log(CharactersStorage);
+  // console.log(CharactersStorage);
 
   const ComicsStorage = JSON.parse(localStorage.getItem("NewComicsFavoris"));
-  console.log(ComicsStorage);
+  // console.log(ComicsStorage);
   return (
     <div className="background">
       <div className="header-comicsByPerso">
@@ -41,31 +41,42 @@ const Favoris = ({ picture }) => {
       <section className="favoris-container container">
         <div className="character-favoris-content">
           <h2>Vos personnages favoris :</h2>
-
-          <div className="carousel-character">
-            {CharactersStorage.map((elem, index) => {
-              return (
-                <div key={index} className="carousel-card-character">
-                  <img src={elem.picture} alt="" />
-                  <p>{elem.name}</p>
-                  <p>{elem.description}</p>
-                </div>
-              );
-            })}
-          </div>
+          {CharactersStorage ? (
+            <div className="carousel-character">
+              {CharactersStorage.map((elem, index) => {
+                return (
+                  <div key={index} className="carousel-card-character">
+                    <img src={elem.picture} alt="" />
+                    <p>{elem.name}</p>
+                    <p>{elem.description}</p>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="emptyFavorisList">
+              <p>Vous n'avez pas encore de personnages favoris !</p>
+            </div>
+          )}
         </div>
         <div className="comics-favoris-content">
           <h2>Vos comics favoris :</h2>
-          <div className="carousel-comic">
-            {ComicsStorage.map((item, index) => {
-              return (
-                <div key={index} className="carousel-card-comic">
-                  <img src={item.picture} alt="test" />
-                  <p>{item.title}</p>
-                </div>
-              );
-            })}
-          </div>
+          {ComicsStorage ? (
+            <div className="carousel-comic">
+              {ComicsStorage.map((item, index) => {
+                return (
+                  <div key={index} className="carousel-card-comic">
+                    <img src={item.picture} alt="test" />
+                    <p>{item.title}</p>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="emptyFavorisList">
+              <p>Vous n'avez pas encore de comics favoris !</p>
+            </div>
+          )}
         </div>
       </section>
     </div>

@@ -3,6 +3,7 @@
 body {
   font-family: "Roboto", sans-serif;
   background-color: black;
+  color: white;
 }
 .content-home .lien {
   text-decoration: none;
@@ -367,6 +368,9 @@ body {
 }
 .carousel-card-character {
   background-color: black;
+  overflow-x: scroll;
+  height: 300px;
+  width: 260px;
 }
 .carousel-card-character img {
   width: 260px;
@@ -400,6 +404,10 @@ body {
   width: 260px;
 }
 
+.emptyFavorisList {
+  height: 260px;
+  color: white;
+}
 /* LOADING */
 
 .loading {
