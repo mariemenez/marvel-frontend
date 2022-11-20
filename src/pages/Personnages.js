@@ -105,7 +105,6 @@ const Personnages = ({ CharactersFavoris, setCharactersFavoris }) => {
                           "newCharactersFavoris",
                           JSON.stringify(newCharactersFavoris)
                         );
-
                         const CharactersStorage = JSON.parse(
                           localStorage.getItem("newCharactersFavoris")
                         );
@@ -122,6 +121,7 @@ const Personnages = ({ CharactersFavoris, setCharactersFavoris }) => {
         </div>
         <div className="pagination">
           <div
+            className={page <= 1 && "hidden"}
             onClick={() => {
               setPage(page - 1);
             }}

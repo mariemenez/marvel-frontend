@@ -423,6 +423,10 @@ body {
   color: #ffc91c;
 }
 
+.hidden {
+  display: none;
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 1200px) {

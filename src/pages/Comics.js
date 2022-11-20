@@ -117,6 +117,7 @@ const Comics = ({ ComicsFavoris, setComicsFavoris }) => {
         </div>
         <div className="pagination">
           <div
+            className={page <= 1 && "hidden"}
             onClick={() => {
               setPage(page - 1);
             }}
