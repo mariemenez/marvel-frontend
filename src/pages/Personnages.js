@@ -52,24 +52,22 @@ const Personnages = ({ CharactersFavoris, setCharactersFavoris }) => {
         </div>
 
         <nav>
-          <div className="favoris">
-            <i className="fa-solid fa-book-open"></i>{" "}
-            <Link className="lien" to={"/comics"}>
-              <p>comics</p>
-            </Link>
-          </div>
+          <Link className="lien" to={"/comics"}>
+            <div className="favoris">
+              <i className="fa-solid fa-book-open"></i> <p>comics</p>
+            </div>
+          </Link>
           <div className="favoris">
             <i className="fa-solid fa-bolt-lightning"></i>
             <Link className="lien" to={"/favoris"}>
-              <p>Votre liste</p>
+              <p>Favoris</p>
             </Link>
           </div>
-          <div className="favoris">
-            <i className="fa-solid fa-house"></i>{" "}
-            <Link className="lien" to={"/"}>
-              <p>Home</p>
-            </Link>
-          </div>
+          <Link className="lien" to={"/"}>
+            <div className="favoris">
+              <i className="fa-solid fa-house"></i> <p>Home</p>
+            </div>
+          </Link>
         </nav>
       </div>
       <div className="container">

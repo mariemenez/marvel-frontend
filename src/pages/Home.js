@@ -9,18 +9,17 @@ const Home = () => {
           alt="logo-marvel"
         />
         <nav>
-          <div className="favoris">
-            <i className="fa-solid fa-bolt-lightning"></i>
-            <Link className="lien" to={"/favoris"}>
-              <p>Votre liste</p>
-            </Link>
-          </div>
-          <div className="favoris">
-            <i className="fa-solid fa-house"></i>{" "}
-            <Link className="lien" to={"/"}>
-              <p>Home</p>
-            </Link>
-          </div>
+          <Link className="lien" to={"/favoris"}>
+            <div className="favoris">
+              <i className="fa-solid fa-bolt-lightning"></i>
+              <p>Favoris</p>
+            </div>
+          </Link>
+          <Link className="lien" to={"/"}>
+            <div className="favoris">
+              <i className="fa-solid fa-house"></i> <p>Home</p>
+            </div>
+          </Link>
         </nav>
       </div>
       <div className="imagefond">
